@@ -78,6 +78,10 @@
 		6F7B5EED17325A7D00ED4F83 /* AGPageConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7B5EEC17325A7D00ED4F83 /* AGPageConfiguration.m */; };
 		6F7B5EF017326E0A00ED4F83 /* AGPageConfigSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7B5EEF17326E0A00ED4F83 /* AGPageConfigSpec.m */; };
 		6F7C9A1B17CFBB6900058365 /* AGBaseAdapterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7C9A1A17CFBB6900058365 /* AGBaseAdapterSpec.m */; };
+		6FC6C6BF18E06216008571A3 /* AGEncryptedMemoryStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6C6BE18E06216008571A3 /* AGEncryptedMemoryStorageSpec.m */; };
+		6FC6C6C118E06221008571A3 /* AGEncryptedPropertyListStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6C6C018E06221008571A3 /* AGEncryptedPropertyListStorageSpec.m */; };
+		6FC6C6C418E06234008571A3 /* AGPassphraseEncryptionServicesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6C6C218E06234008571A3 /* AGPassphraseEncryptionServicesSpec.m */; };
+		6FC6C6C518E06234008571A3 /* AGPasswordEncryptionServicesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6C6C318E06234008571A3 /* AGPasswordEncryptionServicesSpec.m */; };
 		6FC8F192172FC84F00905C2F /* AGPageBaseExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC8F191172FC84F00905C2F /* AGPageBaseExtractor.m */; };
 		6FE3D1381834E3F100C3A09A /* AGBaseEncryptionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE3D12B1834E3F100C3A09A /* AGBaseEncryptionService.m */; };
 		6FE3D1391834E3F100C3A09A /* AGKeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE3D12F1834E3F100C3A09A /* AGKeyManager.m */; };
@@ -228,6 +232,10 @@
 		6F7B5EEC17325A7D00ED4F83 /* AGPageConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPageConfiguration.m; path = pipeline/paging/AGPageConfiguration.m; sourceTree = "<group>"; };
 		6F7B5EEF17326E0A00ED4F83 /* AGPageConfigSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPageConfigSpec.m; sourceTree = "<group>"; };
 		6F7C9A1A17CFBB6900058365 /* AGBaseAdapterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGBaseAdapterSpec.m; sourceTree = "<group>"; };
+		6FC6C6BE18E06216008571A3 /* AGEncryptedMemoryStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGEncryptedMemoryStorageSpec.m; sourceTree = "<group>"; };
+		6FC6C6C018E06221008571A3 /* AGEncryptedPropertyListStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGEncryptedPropertyListStorageSpec.m; sourceTree = "<group>"; };
+		6FC6C6C218E06234008571A3 /* AGPassphraseEncryptionServicesSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPassphraseEncryptionServicesSpec.m; sourceTree = "<group>"; };
+		6FC6C6C318E06234008571A3 /* AGPasswordEncryptionServicesSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPasswordEncryptionServicesSpec.m; sourceTree = "<group>"; };
 		6FC8F190172FC84F00905C2F /* AGPageBaseExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPageBaseExtractor.h; path = pipeline/paging/AGPageBaseExtractor.h; sourceTree = "<group>"; };
 		6FC8F191172FC84F00905C2F /* AGPageBaseExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPageBaseExtractor.m; path = pipeline/paging/AGPageBaseExtractor.m; sourceTree = "<group>"; };
 		6FE3D12A1834E3F100C3A09A /* AGBaseEncryptionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGBaseEncryptionService.h; path = security/AGBaseEncryptionService.h; sourceTree = "<group>"; };
@@ -350,7 +358,13 @@
 				573CBDA315E4F31B0071E7A6 /* AGPipelineSpec.m */,
 				573CBDAC15E546B70071E7A6 /* AGRestAdapterSpec.m */,
 				571DBAD41610C3D700A0A3A6 /* AGMemoryStorageSpec.m */,
+				6FC6C6BE18E06216008571A3 /* AGEncryptedMemoryStorageSpec.m */,
+				489F47B717DDFF110072DE0F /* AGSQLiteStorageSpec.m */,
 				480FD4DC185B08B000D8CAD3 /* AGEncryptedSQLiteStorageSpec.m */,
+				3A3FABBA99D20FF6EDAEB888 /* AGPropertyListStorageSpec.m */,
+				6FC6C6C018E06221008571A3 /* AGEncryptedPropertyListStorageSpec.m */,
+				6FC6C6C218E06234008571A3 /* AGPassphraseEncryptionServicesSpec.m */,
+				6FC6C6C318E06234008571A3 /* AGPasswordEncryptionServicesSpec.m */,
 				A0A37AD216AE905F00979868 /* AGPipeConfigSpec.m */,
 				6F7B5EEF17326E0A00ED4F83 /* AGPageConfigSpec.m */,
 				3A3FA042B2FA52968D0AA580 /* AGAuthenticatorSpec.m */,
@@ -361,8 +375,6 @@
 				3A3FA907DCCCFBA82B64DE9D /* AGPageHeaderExtractorSpec.m */,
 				3A3FA7B7F632A59A9D4C53F1 /* AGPageWebLinkingExtractorSpec.m */,
 				3A3FA81DD1CD6812526D0D6A /* AGPaginationSpec.m */,
-				3A3FABBA99D20FF6EDAEB888 /* AGPropertyListStorageSpec.m */,
-				489F47B717DDFF110072DE0F /* AGSQLiteStorageSpec.m */,
 				3A3FAD425C7D92793D443079 /* AGRestAuthenticationSpec.m */,
 				483E6D3A188F1F61004AFA1F /* AGRestAuthzModuleSpec.m */,
 				6F7C9A1A17CFBB6900058365 /* AGBaseAdapterSpec.m */,
@@ -725,9 +737,11 @@
 				6FFF85381760EE060044B5DE /* AGHTTPMockHelper.m in Sources */,
 				3A3FA4389A8490B5D7049667 /* AGAuthenticatorSpec.m in Sources */,
 				3A3FAD31FC7EE80261D43F28 /* AGDataManagerSpec.m in Sources */,
+				6FC6C6BF18E06216008571A3 /* AGEncryptedMemoryStorageSpec.m in Sources */,
 				3A3FAC066A74B0FBA243D661 /* AGHttpClientSpec.m in Sources */,
 				833BB20C1886C6B1007760EC /* AGTestObserver.m in Sources */,
 				6FE3D1431834E44200C3A09A /* AGKeyManagerSpec.m in Sources */,
+				6FC6C6C518E06234008571A3 /* AGPasswordEncryptionServicesSpec.m in Sources */,
 				480FD4DD185B08B000D8CAD3 /* AGEncryptedSQLiteStorageSpec.m in Sources */,
 				3A3FA0F7DE3FD6E3C9B77946 /* AGPageBaseExtractorSpec.m in Sources */,
 				3A3FA6DEFAAE4B15941A6D48 /* AGPageBodyExtractorSpec.m in Sources */,
@@ -738,7 +752,9 @@
 				3A3FA56A5AAB22B9B7FC779E /* AGRestAuthenticationSpec.m in Sources */,
 				6F7C9A1B17CFBB6900058365 /* AGBaseAdapterSpec.m in Sources */,
 				483E6D3B188F1F61004AFA1F /* AGRestAuthzModuleSpec.m in Sources */,
+				6FC6C6C118E06221008571A3 /* AGEncryptedPropertyListStorageSpec.m in Sources */,
 				489F47B817DDFF110072DE0F /* AGSQLiteStorageSpec.m in Sources */,
+				6FC6C6C418E06234008571A3 /* AGPassphraseEncryptionServicesSpec.m in Sources */,
 				6FE3D1471834E4C300C3A09A /* AGBaseStorageSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
