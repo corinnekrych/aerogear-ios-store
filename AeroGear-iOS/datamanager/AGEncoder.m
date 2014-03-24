@@ -38,7 +38,10 @@
                                                      options:0 error:error];
 }
 
-- (id)decode:(NSData *)data error:(NSError **)error {   
+- (id)decode:(NSData *)data error:(NSError **)error {
+    if (!data)
+        return nil;
+
     return [NSPropertyListSerialization propertyListWithData:data
                                                      options:0
                                                       format:&_format error:error];

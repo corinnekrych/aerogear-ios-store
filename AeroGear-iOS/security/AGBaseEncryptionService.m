@@ -16,8 +16,7 @@
  */
 
 #import "AGBaseEncryptionService.h"
-#import <AGSecretBox.h>
-#import <AGRandomGenerator.h>
+#import <AeroGearCrypto.h>
 
 static NSString *const kApplicationIV = @"applicationIV";
 
@@ -31,7 +30,7 @@ static NSString *const kApplicationIV = @"applicationIV";
         _applicationIV = [defaults dataForKey:kApplicationIV];
         
         if (!_applicationIV) {
-            _applicationIV = [AGRandomGenerator randomBytes:16];
+            _applicationIV = [AGRandomGenerator randomBytes:24];
             
             [defaults setObject:_applicationIV forKey:kApplicationIV];
             [defaults synchronize];
@@ -43,21 +42,31 @@ static NSString *const kApplicationIV = @"applicationIV";
 
 - (NSData *)encrypt:(NSData *)data {
     return [self encrypt:data IV:_applicationIV];
-    
 }
 
 - (NSData *)encrypt:(NSData *)data IV:(NSData *)IV {
-    return [_secretBox encrypt:data IV:IV];
+    NSError *error;
+    NSData *encryptedData = [_secretBox encrypt:data nonce:IV error:&error];
+
+    if (error)
+        return nil;
+
+    return encryptedData;
     
 }
 
 - (NSData *)decrypt:(NSData *)data {
     return [self decrypt:data IV:_applicationIV];
-    
 }
 
 - (NSData *)decrypt:(NSData *)data IV:(NSData *)IV {
-    return [_secretBox decrypt:data IV:IV];
+    NSError *error;
+    NSData *decruptedData = [_secretBox decrypt:data nonce:IV error:&error];
+
+    if (error)
+        return nil;
+
+    return decruptedData;
 }
 
 @end

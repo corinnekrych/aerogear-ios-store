@@ -92,8 +92,8 @@
             // step 2: generate and add symmetric key
             query = [self keyChainDictionaryForKeyClass];
 
-            query[(__bridge id)kSecAttrKeySizeInBits] = @16U;
-            query[(__bridge id)kSecAttrEffectiveKeySize] = @16U;
+            query[(__bridge id)kSecAttrKeySizeInBits] = @32U;
+            query[(__bridge id)kSecAttrEffectiveKeySize] = @32U;
             query[(__bridge id)kSecAttrCanEncrypt] = (__bridge id)kCFBooleanTrue;
             query[(__bridge id)kSecAttrCanDecrypt] = (__bridge id)kCFBooleanTrue;
             query[(__bridge id)kSecAttrCanDerive] = (__bridge id)kCFBooleanFalse;
@@ -103,14 +103,14 @@
             query[(__bridge id)kSecAttrCanUnwrap] = (__bridge id)kCFBooleanFalse;
             
             // generate key
-            key = [AGRandomGenerator randomBytes:16];
+            key = [AGRandomGenerator randomBytes:32];
             query[(__bridge id)kSecValueData] = key;
             
             // add it
             status = SecItemAdd((__bridge CFDictionaryRef) query, NULL);
         }
         
-        // initialize cryptobox
+        // initialize secretbox
         _secretBox = [[AGSecretBox alloc] initWithKey:key];
     }
     
