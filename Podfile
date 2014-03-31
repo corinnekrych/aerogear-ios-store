@@ -4,7 +4,7 @@ platform :ios, '7.0'
 
 pod 'AFNetworking', '2.2.1'
 pod 'FMDB', '2.1'
-pod 'AeroGear-Crypto', :git => 'https://github.com/cvasilak/aerogear-crypto-ios.git', :branch => 'error' 
+pod 'AeroGear-Crypto', '0.2.3'
 
 target 'AeroGear-iOSTests', :exclusive => true do
     pod 'OCMock', '2.1.1'
