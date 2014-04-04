@@ -25,6 +25,7 @@
 		480FD4DB185B088500D8CAD3 /* AGEncryptedSQLiteStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 480FD4DA185B088500D8CAD3 /* AGEncryptedSQLiteStorage.m */; };
 		480FD4DD185B08B000D8CAD3 /* AGEncryptedSQLiteStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 480FD4DC185B08B000D8CAD3 /* AGEncryptedSQLiteStorageSpec.m */; };
 		480FD4E0185B08ED00D8CAD3 /* AGSQLiteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 480FD4DF185B08ED00D8CAD3 /* AGSQLiteCommand.m */; };
+		483609CB18EED02300FD73B6 /* AGAuthorizerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 483609CA18EED02300FD73B6 /* AGAuthorizerSpec.m */; };
 		483E6D3B188F1F61004AFA1F /* AGRestAuthzModuleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E6D3A188F1F61004AFA1F /* AGRestAuthzModuleSpec.m */; };
 		489BC1A017E0C1F80008DAEF /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 489BC19F17E0C1F80008DAEF /* libsqlite3.0.dylib */; };
 		489F47B817DDFF110072DE0F /* AGSQLiteStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 489F47B717DDFF110072DE0F /* AGSQLiteStorageSpec.m */; };
@@ -158,6 +159,7 @@
 		480FD4DC185B08B000D8CAD3 /* AGEncryptedSQLiteStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGEncryptedSQLiteStorageSpec.m; sourceTree = "<group>"; };
 		480FD4DE185B08ED00D8CAD3 /* AGSQLiteCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGSQLiteCommand.h; path = datamanager/AGSQLiteCommand.h; sourceTree = "<group>"; };
 		480FD4DF185B08ED00D8CAD3 /* AGSQLiteCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGSQLiteCommand.m; path = datamanager/AGSQLiteCommand.m; sourceTree = "<group>"; };
+		483609CA18EED02300FD73B6 /* AGAuthorizerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGAuthorizerSpec.m; sourceTree = "<group>"; };
 		483E6D3A188F1F61004AFA1F /* AGRestAuthzModuleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGRestAuthzModuleSpec.m; sourceTree = "<group>"; };
 		489BC19F17E0C1F80008DAEF /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		489F47B717DDFF110072DE0F /* AGSQLiteStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGSQLiteStorageSpec.m; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 				A0A37AD216AE905F00979868 /* AGPipeConfigSpec.m */,
 				6F7B5EEF17326E0A00ED4F83 /* AGPageConfigSpec.m */,
 				3A3FA042B2FA52968D0AA580 /* AGAuthenticatorSpec.m */,
+				483609CA18EED02300FD73B6 /* AGAuthorizerSpec.m */,
 				3A3FAFA30EC799853C34BF60 /* AGDataManagerSpec.m */,
 				3A3FA925D72453AC929348F1 /* AGHttpClientSpec.m */,
 				3A3FA74285D05B5DFF014629 /* AGPageBaseExtractorSpec.m */,
@@ -730,6 +733,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				573CBDA415E4F31B0071E7A6 /* AGPipelineSpec.m in Sources */,
+				483609CB18EED02300FD73B6 /* AGAuthorizerSpec.m in Sources */,
 				573CBDAD15E546B70071E7A6 /* AGRestAdapterSpec.m in Sources */,
 				571DBAD51610C3D700A0A3A6 /* AGMemoryStorageSpec.m in Sources */,
 				A0A37AD316AE905F00979868 /* AGPipeConfigSpec.m in Sources */,
