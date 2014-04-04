@@ -50,8 +50,8 @@ describe(@"AGAuthorizer", ^{
 
             [(id)module shouldNotBeNil];
 
-            [[module.authzEndpoint should] equal:@"https://server:8080/application/oauth2/auth"];
-            [[module.accessTokenEndpoint should] equal:@"https://server:8080/application/oauth2/access/codes"];
+            [[module.authzEndpoint should] equal:@"oauth2/auth"];
+            [[module.accessTokenEndpoint should] equal:@"oauth2/access/codes"];
         });
 
         it(@"should respect user-configured endpoints", ^{
@@ -64,8 +64,8 @@ describe(@"AGAuthorizer", ^{
 
             [(id)module shouldNotBeNil];
 
-            [[module.accessTokenEndpoint should] equal:@"https://server:8080/application/subcontext/auth/in"];
-            [[module.authzEndpoint should] equal:@"https://server:8080/application/subcontext/auth/out"];
+            [[module.accessTokenEndpoint should] equal:@"auth/in"];
+            [[module.authzEndpoint should] equal:@"auth/out"];
         });
         
         it(@"should respect user-configured endpoints wether prefixed or not with slash", ^{
@@ -78,8 +78,8 @@ describe(@"AGAuthorizer", ^{
             
             [(id)module shouldNotBeNil];
             
-            [[module.accessTokenEndpoint should] equal:@"https://server:8080/application/subcontext/auth/in"];
-            [[module.authzEndpoint should] equal:@"https://server:8080/application/subcontext/auth/out"];
+            [[module.accessTokenEndpoint should] equal:@"auth/in"];
+            [[module.authzEndpoint should] equal:@"auth/out"];
         });
 
         it(@"should have a default type if not specified", ^{

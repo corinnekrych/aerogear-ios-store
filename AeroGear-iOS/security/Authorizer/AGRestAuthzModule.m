@@ -40,14 +40,6 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 @synthesize clientSecret = _clientSecret;
 @synthesize scopes = _scopes;
 
--(NSString*) authzEndpoint {
-    return [_baseURL stringByAppendingString:_authzEndpoint];
-}
-
--(NSString*) accessTokenEndpoint {
-    return [_baseURL stringByAppendingString:_accessTokenEndpoint];
-}
-
 // ==============================================================
 // ======== internal API (AGAuthenticationModuleAdapter) ========
 // ==============================================================
