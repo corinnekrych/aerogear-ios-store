@@ -40,10 +40,6 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 @synthesize clientSecret = _clientSecret;
 @synthesize scopes = _scopes;
 
--(NSString*) authEndpoint {
-    return [_baseURL stringByAppendingString:_authzEndpoint];
-}
-
 // ==============================================================
 // ======== internal API (AGAuthenticationModuleAdapter) ========
 // ==============================================================
@@ -91,7 +87,7 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
               failure:(void (^)(NSError *error))failure {
 
     // Form the URL string.
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?scope=%@&redirect_uri=%@&client_id=%@&response_type=code",
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?scope=%@&redirect_uri=%@&client_id=%@&response_type=code",
                                                                  self.baseURL,
                                                                  self.authzEndpoint,
                                                                  [self scope],

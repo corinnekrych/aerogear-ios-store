@@ -32,12 +32,29 @@
 @synthesize name = _name;
 @synthesize type = _type;
 
+- (NSString *)authzEndpoint {
+    NSString* correctlyFormattedAuthzEndpoint = _authzEndpoint;
+    if ([correctlyFormattedAuthzEndpoint hasPrefix:@"/"]) {
+        correctlyFormattedAuthzEndpoint = [correctlyFormattedAuthzEndpoint substringFromIndex:1];
+    }
+    return correctlyFormattedAuthzEndpoint;
+}
+
+- (NSString *)accessTokenEndpoint {
+    NSString* correctlyFormattedAccessTokenEndpoint = _accessTokenEndpoint;
+    if ([correctlyFormattedAccessTokenEndpoint hasPrefix:@"/"]) {
+        correctlyFormattedAccessTokenEndpoint = [correctlyFormattedAccessTokenEndpoint substringFromIndex:1];
+    }
+    return correctlyFormattedAccessTokenEndpoint;
+}
+
 - (instancetype)init {
     self = [super init];
     if (self) {
         // default values:
         _type = @"AG_OAUTH2";
         _authzEndpoint = @"oauth2/auth";
+        _accessTokenEndpoint = @"oauth2/access/codes";
         _redirectURL = @"myURL";
         _scopes = @[@"email"];
         _timeout = 60; // the default timeout interval of NSMutableURLRequest (60 secs)
