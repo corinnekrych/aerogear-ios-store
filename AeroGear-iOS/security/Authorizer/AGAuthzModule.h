@@ -71,6 +71,8 @@ _AGAuthenticationModule_ is supported too.
 -(void) requestAccessSuccess:(void (^)(id object))success
      failure:(void (^)(NSError *error))failure;
 
-//TODO refreshAccess
-//TODO revokeAccess
+-(NSDictionary*) authorizationFields;
+
+-(BOOL) isAuthorized;
+
 @end

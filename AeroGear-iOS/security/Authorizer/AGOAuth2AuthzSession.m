@@ -15,24 +15,21 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
-#import "AGAuthzModule.h"
+#import "AGOAuth2AuthzSession.h"
 
-/**
- * AGAuthzModuleAdapter represents the _internal_ authentication module 'interface'
- */
-@protocol AGAuthzModuleAdapter <AGAuthzModule>
+@implementation AGOAuth2AuthzSession
+@synthesize accessToken;
+@synthesize accessTokenExpirationDate;
+@synthesize refreshToken;
 
-/**
- *  A key/value pair of the authentication tokens.
- */
-@property (nonatomic, readonly) NSDictionary* accessTokens;
+- (BOOL)tokenIsNotExpired {
+    return [accessTokenExpirationDate timeIntervalSinceDate:[NSDate date]] > 0 ;
+}
 
-/**
- * check is accessTokens are present and not expired.
- * TODO AGIOS-145
- */
-- (BOOL)isAuthorized;
-
-
+- (void) saveAccessToken:(NSString*)accessToken refreshToken:(NSString*) refreshToken expiration:(NSString*) expiration {
+    self.accessToken = accessToken;
+    self.refreshToken = refreshToken;
+    NSDate *now = [NSDate date];
+    self.accessTokenExpirationDate = [now dateByAddingTimeInterval:[expiration integerValue]];
+}
 @end

@@ -21,7 +21,7 @@
 #import "AGMultipart.h"
 #import "AGHTTPMockHelper.h"
 #import "AGRestAuthentication.h"
-#import "AGRestAuthzModule.h"
+#import "AGRestOAuth2Module.h"
 
 // expose private methods of AGHttpClient for the purpose of testing
 @interface AGHttpClient (Testing)
@@ -471,15 +471,16 @@ SPEC_BEGIN(AGHttpClientSpec)
         context(@"should honour authorization headers", ^{
 
             __block AGHttpClient* _restClient = nil;
-
+            __block AGRestOAuth2Module *authzModule = nil;
             beforeEach(^{
                 NSURL* baseURL = [NSURL URLWithString:@"http://server.com/context/"];
 
-                AGRestAuthzModule *authzModulde = [[AGRestAuthzModule alloc] init];
-                // use KVC to set fictitious authorization headers
-                [authzModulde setValue:@{@"Token" : @"foo"} forKey:@"accessTokens"];
-
-                _restClient = [AGHttpClient clientFor:baseURL timeout:60 sessionConfiguration:nil authModule:nil authzModule:authzModulde];
+                authzModule = [[AGRestOAuth2Module alloc] init];
+                
+                authzModule.session.accessToken = @"ACCESS_TOKEN";
+                authzModule.session.accessTokenExpirationDate = [[NSDate date] dateByAddingTimeInterval:3600];
+                
+                _restClient = [AGHttpClient clientFor:baseURL timeout:60 sessionConfiguration:nil authModule:nil authzModule:authzModule];
             });
 
             afterEach(^{
@@ -495,7 +496,7 @@ SPEC_BEGIN(AGHttpClientSpec)
 
                 [_restClient GET:@"projects" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 
-                    [task.originalRequest.allHTTPHeaderFields[@"Token"] shouldNotBeNil];
+                    [task.originalRequest.allHTTPHeaderFields[@"Authorization"] shouldNotBeNil];
                     finishedFlag = YES;
 
                 } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -514,7 +515,7 @@ SPEC_BEGIN(AGHttpClientSpec)
 
                 [_restClient PUT:@"projects/0" parameters:project success:^(NSURLSessionDataTask *task, id responseObject) {
 
-                    [task.originalRequest.allHTTPHeaderFields[@"Token"] shouldNotBeNil];
+                    [task.originalRequest.allHTTPHeaderFields[@"Authorization"] shouldNotBeNil];
                     finishedFlag = YES;
 
                 } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -544,7 +545,7 @@ SPEC_BEGIN(AGHttpClientSpec)
                 // upload
                 [_restClient PUT:@"projects/0" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
 
-                    [task.originalRequest.allHTTPHeaderFields[@"Token"] shouldNotBeNil];
+                    [task.originalRequest.allHTTPHeaderFields[@"Authorization"] shouldNotBeNil];
                     finishedFlag = YES;
 
                 } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -565,7 +566,7 @@ SPEC_BEGIN(AGHttpClientSpec)
 
                 [_restClient POST:@"projects" parameters:project success:^(NSURLSessionDataTask *task, id responseObject) {
 
-                    [task.originalRequest.allHTTPHeaderFields[@"Token"] shouldNotBeNil];
+                    [task.originalRequest.allHTTPHeaderFields[@"Authorization"] shouldNotBeNil];
                     finishedFlag = YES;
 
                 } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -594,8 +595,7 @@ SPEC_BEGIN(AGHttpClientSpec)
 
                 // upload
                 [_restClient POST:@"projects" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-
-                    [task.originalRequest.allHTTPHeaderFields[@"Token"] shouldNotBeNil];
+                    [task.originalRequest.allHTTPHeaderFields[@"Authorization"] shouldNotBeNil];
                     finishedFlag = YES;
 
                 } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -616,7 +616,7 @@ SPEC_BEGIN(AGHttpClientSpec)
 
                 [_restClient DELETE:@"projects/0" parameters:project success:^(NSURLSessionDataTask *task, id responseObject) {
 
-                    [task.originalRequest.allHTTPHeaderFields[@"Token"] shouldNotBeNil];
+                    [task.originalRequest.allHTTPHeaderFields[@"Authorization"] shouldNotBeNil];
                     finishedFlag = YES;
 
                 } failure:^(NSURLSessionDataTask *task, NSError *error) {
