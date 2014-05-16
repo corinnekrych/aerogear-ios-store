@@ -63,6 +63,7 @@ _AGAuthenticationModule_ is supported too.
 @property (nonatomic, readonly) NSString* baseURL;
 @property (nonatomic, readonly) NSString* authzEndpoint;
 @property (nonatomic, readonly) NSString* accessTokenEndpoint;
+@property (nonatomic, readonly) NSString* revokeTokenEndpoint;
 @property (nonatomic, readonly) NSString* redirectURL;
 @property (nonatomic, readonly) NSArray* scopes;
 @property (nonatomic, readonly) NSString* clientId;
@@ -70,6 +71,9 @@ _AGAuthenticationModule_ is supported too.
 
 -(void) requestAccessSuccess:(void (^)(id object))success
      failure:(void (^)(NSError *error))failure;
+
+-(void) revokeAccessSuccess:(void (^)(id object))success
+                     failure:(void (^)(NSError *error))failure;
 
 -(NSDictionary*) authorizationFields;
 

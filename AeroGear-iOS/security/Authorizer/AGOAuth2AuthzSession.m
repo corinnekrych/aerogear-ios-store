@@ -18,12 +18,12 @@
 #import "AGOAuth2AuthzSession.h"
 
 @implementation AGOAuth2AuthzSession
-@synthesize accessToken;
-@synthesize accessTokenExpirationDate;
-@synthesize refreshToken;
+@synthesize accessToken = _accessToken;
+@synthesize accessTokenExpirationDate = _accessTokenExpirationDate;
+@synthesize refreshToken = _refreshToken;
 
 - (BOOL)tokenIsNotExpired {
-    return [accessTokenExpirationDate timeIntervalSinceDate:[NSDate date]] > 0 ;
+    return [_accessTokenExpirationDate timeIntervalSinceDate:[NSDate date]] > 0 ;
 }
 
 - (void) saveAccessToken:(NSString*)accessToken refreshToken:(NSString*) refreshToken expiration:(NSString*) expiration {

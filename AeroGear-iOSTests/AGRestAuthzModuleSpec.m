@@ -47,6 +47,7 @@ describe(@"AGRestAuthzModule", ^{
             config.baseURL = [[NSURL alloc] initWithString:@"https://accounts.google.com"];
             config.authzEndpoint = @"/o/oauth2/auth";
             config.accessTokenEndpoint = @"/o/oauth2/token";
+            config.revokeTokenEndpoint = @"/o/oauth2/revoke";
             config.clientId = @"XXXXX";
             config.redirectURL = @"org.aerogear.GoogleDrive";
             config.scopes = @[@"https://www.googleapis.com/auth/drive"];
@@ -177,6 +178,27 @@ describe(@"AGRestAuthzModule", ^{
             [[mockAGHTTPClient expect] POST:config.accessTokenEndpoint parameters:paramDict success:[OCMArg any] failure:[OCMArg any]];
             
             [myRestAuthzModule refreshAccessTokenSuccess:callbackSuccess failure:callbackFailure];
+            
+            [mockAGHTTPClient verify];
+            [mockAGHTTPClient stopMocking];
+        });
+        
+        it(@"should issue a request to revoke access/refresh tokens", ^{
+            __block BOOL wasSuccessCallbackCalled = NO;
+            void (^callbackSuccess)(id obj) = ^ void (id object) {wasSuccessCallbackCalled = YES;};
+            void (^callbackFailure)(NSError *error) = ^ void (NSError *error) {};
+            
+            id mockAGHTTPClient = [OCMockObject mockForClass:[AGHttpClient class]];
+            
+            AGRestOAuth2Module* myRestAuthzModule = [[AGRestOAuth2Module alloc] initWithConfig:config client:mockAGHTTPClient];
+            myRestAuthzModule.session.refreshToken = @"REFRESH_TOKEN";
+            myRestAuthzModule.session.accessToken = @"ACCESS_TOKEN";
+            
+            NSMutableDictionary* paramDict = [@{@"token":@"ACCESS_TOKEN"} mutableCopy];
+            
+            [[mockAGHTTPClient expect] POST:config.revokeTokenEndpoint parameters:paramDict success:[OCMArg any] failure:[OCMArg any]];
+            
+            [myRestAuthzModule revokeAccessSuccess:callbackSuccess failure:callbackFailure];
             
             [mockAGHTTPClient verify];
             [mockAGHTTPClient stopMocking];

@@ -35,6 +35,7 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 @synthesize baseURL = _baseURL;
 @synthesize authzEndpoint = _authzEndpoint;
 @synthesize accessTokenEndpoint = _accessTokenEndpoint;
+@synthesize revokeTokenEndpoint = _revokeTokenEndpoint;
 @synthesize redirectURL = _redirectURL;
 @synthesize clientId = _clientId;
 @synthesize clientSecret = _clientSecret;
@@ -70,6 +71,7 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
         _type = config.type;
         _authzEndpoint = config.authzEndpoint;
         _accessTokenEndpoint = config.accessTokenEndpoint;
+        _revokeTokenEndpoint = config.revokeTokenEndpoint;
         _redirectURL = config.redirectURL;
         _clientId = config.clientId;
         _clientSecret = config.clientSecret;
@@ -115,6 +117,25 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
         // ask for authorization code and once obtained exchange code for access token
         [self requestAuthorizationCodeSuccess:success failure:failure];
     }
+}
+
+-(void) revokeAccessSuccess:(void (^)(id object))success
+                     failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary* paramDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"token":self.session.accessToken}];
+    
+    [_restClient POST:self.revokeTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self.session saveAccessToken:nil refreshToken:nil expiration:nil];
+        
+        if (success) {
+            success(nil);
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
 }
 
 

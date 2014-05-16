@@ -23,6 +23,7 @@
 @synthesize baseURL = _baseURL;
 @synthesize authzEndpoint = _authzEndpoint;
 @synthesize accessTokenEndpoint = _accessTokenEndpoint;
+@synthesize revokeTokenEndpoint = _revokeTokenEndpoint;
 @synthesize redirectURL = _redirectURL;
 @synthesize scopes = _scopes;
 @synthesize clientId = _clientId;

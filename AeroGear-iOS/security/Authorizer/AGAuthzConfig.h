@@ -43,6 +43,10 @@
  */
 @property (copy, nonatomic) NSString* accessTokenEndpoint;
 
+/**
+ * Endpoint for request to invalidate both accessToken and refreshToken.
+ */
+@property (copy, nonatomic) NSString* revokeTokenEndpoint;
 
 /**
  * Applies the "scope" of the authorization.
