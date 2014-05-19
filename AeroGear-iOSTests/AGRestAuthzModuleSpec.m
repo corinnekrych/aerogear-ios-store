@@ -153,7 +153,7 @@ describe(@"AGRestAuthzModule", ^{
             
             AGRestOAuth2Module* myRestAuthzModule = [[AGRestOAuth2Module alloc] initWithConfig:config client:mockAGHTTPClient];
             
-            NSMutableDictionary* paramDict = [@{@"code":code, @"client_id":config.clientId, @"redirect_uri": config.redirectURL, @"grant_type":@"authorization_code"} mutableCopy];
+            NSDictionary* paramDict = @{@"code":code, @"client_id":config.clientId, @"redirect_uri": config.redirectURL, @"grant_type":@"authorization_code"};
             
             [[mockAGHTTPClient expect] POST:config.accessTokenEndpoint parameters:paramDict success:[OCMArg any] failure:[OCMArg any]];
             
@@ -173,7 +173,7 @@ describe(@"AGRestAuthzModule", ^{
             AGRestOAuth2Module* myRestAuthzModule = [[AGRestOAuth2Module alloc] initWithConfig:config client:mockAGHTTPClient];
             myRestAuthzModule.session.refreshToken = @"REFRESH_TOKEN";
             
-            NSMutableDictionary* paramDict = [@{@"refresh_token":@"REFRESH_TOKEN", @"client_id":config.clientId, @"grant_type":@"refresh_token"} mutableCopy];
+            NSDictionary* paramDict = @{@"refresh_token":@"REFRESH_TOKEN", @"client_id":config.clientId, @"grant_type":@"refresh_token"};
             
             [[mockAGHTTPClient expect] POST:config.accessTokenEndpoint parameters:paramDict success:[OCMArg any] failure:[OCMArg any]];
             
@@ -194,7 +194,7 @@ describe(@"AGRestAuthzModule", ^{
             myRestAuthzModule.session.refreshToken = @"REFRESH_TOKEN";
             myRestAuthzModule.session.accessToken = @"ACCESS_TOKEN";
             
-            NSMutableDictionary* paramDict = [@{@"token":@"ACCESS_TOKEN"} mutableCopy];
+            NSDictionary* paramDict = @{@"token":@"ACCESS_TOKEN"};
             
             [[mockAGHTTPClient expect] POST:config.revokeTokenEndpoint parameters:paramDict success:[OCMArg any] failure:[OCMArg any]];
             

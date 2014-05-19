@@ -121,7 +121,7 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 
 -(void) revokeAccessSuccess:(void (^)(id object))success
                      failure:(void (^)(NSError *error))failure {
-    NSMutableDictionary* paramDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"token":self.session.accessToken}];
+    NSDictionary* paramDict = @{@"token":self.session.accessToken};
     
     [_restClient POST:self.revokeTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
         
