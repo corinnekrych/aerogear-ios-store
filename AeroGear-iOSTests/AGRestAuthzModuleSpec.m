@@ -231,7 +231,7 @@ describe(@"AGRestAuthzModule", ^{
             myRestAuthzModule.session.refreshToken = @"REFRESH_TOKEN";
             myRestAuthzModule.session.accessToken = @"ACCESS_TOKEN";
             
-            NSDictionary* paramDict = @{@"token":@"ACCESS_TOKEN"};
+            NSDictionary* paramDict = @{@"access_token":@"ACCESS_TOKEN"};
             
             [[mockAGHTTPClient expect] DELETE:config.revokeTokenEndpoint parameters:paramDict success:[OCMArg any] failure:[OCMArg any]];
             
