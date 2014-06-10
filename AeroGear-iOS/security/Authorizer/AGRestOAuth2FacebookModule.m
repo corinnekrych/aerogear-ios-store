@@ -74,7 +74,7 @@
     // return if not yet initialized
     if (!self.session.accessToken)
         return;
-    NSDictionary* paramDict = @{@"token":self.session.accessToken};
+    NSDictionary* paramDict = @{@"access_token":self.session.accessToken};
     [_restClient DELETE:self.revokeTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [self.session saveAccessToken:nil refreshToken:nil expiration:nil];
