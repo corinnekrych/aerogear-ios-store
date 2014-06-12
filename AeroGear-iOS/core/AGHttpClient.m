@@ -163,9 +163,10 @@
         
         if (error) {
             NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
-            if ( (httpResp.statusCode == 401 /* Unauthorized */ || httpResp.statusCode == 400 /* Bad Request */)
-                && [self.requestSerializer isKindOfClass:[AGRequestSerializer class]]) {
-                
+            if (  (httpResp.statusCode == 401 /* Unauthorized */
+                || httpResp.statusCode == 400 /* Bad Request */
+                || httpResp.statusCode == 500 /* Internal Server Error (keycloak)*/)
+               && [self.requestSerializer isKindOfClass:[AGRequestSerializer class]]) {
                 id<AGOAuth2AuthzModuleAdapter> authzModule = ((AGRequestSerializer *)self.requestSerializer).authzModule;
                 
                 if (authzModule && ![authzModule isAuthorized]) { // is an authz module configured?
