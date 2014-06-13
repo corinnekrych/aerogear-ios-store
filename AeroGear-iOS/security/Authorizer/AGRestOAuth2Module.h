@@ -38,6 +38,9 @@
 // Used for injecting mock
 -(instancetype) initWithConfig:(id<AGAuthzConfig>) authzConfig client:(AGHttpClient*)client;
 
+-(void)extractCode:(NSNotification*)notification success:(void (^)(id object))success failure:(void (^)(NSError *error))failure;
+
+// to be overriden if necessary by OAuth2 specific adapter
 -(void)requestAuthorizationCodeSuccess:(void (^)(id object))success
                                failure:(void (^)(NSError *error))failure;
 

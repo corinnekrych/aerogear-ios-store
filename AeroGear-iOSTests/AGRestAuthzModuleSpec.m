@@ -144,6 +144,35 @@ describe(@"AGRestAuthzModule", ^{
             [mockApplication stopMocking];
         });
         
+        it(@"should run success when a user approved authz", ^{
+
+            NSNotification* notification = [NSNotification notificationWithName:@"AGAppLaunchedWithURLNotification" object:nil userInfo:@{UIApplicationLaunchOptionsURLKey:[NSURL URLWithString:@"fb240176532852375://authorize/?code=AQQ#_=_"]}];
+
+            // Create a partial mock of restAuthzModule
+            id mock = [OCMockObject partialMockForObject:restAuthzModule];
+            [[mock expect] exchangeAuthorizationCodeForAccessToken:[OCMArg any] success:[OCMArg any] failure:[OCMArg any]];
+            
+            [mock extractCode:notification success:[OCMArg any] failure:[OCMArg any]];
+            
+            [mock verify];
+            [mock stopMocking];
+
+        });
+        
+        it(@"should run failure when a user cancel authz", ^{
+            __block BOOL wasSuccessCallbackCalled = NO;
+            __block BOOL wasFailureCallbackCalled = NO;
+            void (^callbackSuccess)(id obj) = ^ void (id object) {wasSuccessCallbackCalled = YES;};
+            void (^callbackFailure)(NSError *error) = ^ void (NSError *error) {wasFailureCallbackCalled = YES;};
+            NSNotification* notification = [NSNotification notificationWithName:@"AGAppLaunchedWithURLNotification" object:nil userInfo:@{UIApplicationLaunchOptionsURLKey:[NSURL URLWithString:@"org.aerogear.shoot:/oauth2Callback?error=access_denied"]}];
+            
+            AGRestOAuth2Module* myRestAuthzModule = [[AGRestOAuth2Module alloc] initWithConfig:config];
+            
+            [myRestAuthzModule extractCode:notification success:callbackSuccess failure:callbackFailure];
+            
+            [[theValue(wasFailureCallbackCalled) should] equal:theValue(YES)];
+        });
+        
         it(@"should issue a request for exchanging authz code for access token when no previous access grant was requested before", ^{
             __block BOOL wasSuccessCallbackCalled = NO;
             void (^callbackSuccess)(id obj) = ^ void (id object) {wasSuccessCallbackCalled = YES;};
