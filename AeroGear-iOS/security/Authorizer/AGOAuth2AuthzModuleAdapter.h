@@ -34,13 +34,13 @@ typedef NS_ENUM(NSUInteger, AGAuthorizationState) {
 };
 
 /**
- *  A key/value store of the authz tokens.
+ *  AGOAuth2AuthzSession holding key/value of the authz tokens.
  */
-@property (nonatomic, readonly) AGOAuth2AuthzSession* session;
+@property (nonatomic, strong) AGOAuth2AuthzSession* sessionStorage;
 
 /*
  * The current state of the authz module.
  */
-@property (nonatomic, readonly) AGAuthorizationState state;
+@property (nonatomic, assign) AGAuthorizationState state;
 
 @end

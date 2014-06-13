@@ -63,7 +63,7 @@ extern NSString * const AGAppDidBecomeActiveNotification;
 @protocol AGAuthzModule <NSObject>
 
 @property (nonatomic, readonly) NSString* type;
-@property (nonatomic, readonly) NSString* baseURL;
+@property (nonatomic, readonly) NSURL* baseURL;
 @property (nonatomic, readonly) NSString* authzEndpoint;
 @property (nonatomic, readonly) NSString* accessTokenEndpoint;
 @property (nonatomic, readonly) NSString* revokeTokenEndpoint;
@@ -71,6 +71,7 @@ extern NSString * const AGAppDidBecomeActiveNotification;
 @property (nonatomic, readonly) NSArray* scopes;
 @property (nonatomic, readonly) NSString* clientId;
 @property (nonatomic, readonly) NSString* clientSecret;
+@property (nonatomic, strong) NSString* accountId;
 
 -(void) requestAccessSuccess:(void (^)(id object))success
      failure:(void (^)(NSError *error))failure;
