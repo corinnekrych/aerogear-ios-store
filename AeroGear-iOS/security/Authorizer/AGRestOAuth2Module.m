@@ -22,6 +22,7 @@
 
 NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotification";
 NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotification";
+NSString * const AGAuthzErrorDomain = @"AGAuthzErrorDomain";
 
 @implementation AGRestOAuth2Module {
     id _applicationLaunchNotificationObserver;
@@ -172,18 +173,7 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
     _applicationLaunchNotificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:AGAppLaunchedWithURLNotification
         object:nil queue:nil usingBlock:^(NSNotification *notification) {
         
-            NSURL *url = [[notification userInfo] valueForKey:UIApplicationLaunchOptionsURLKey];
-        
-            // extract the code from the URL
-            NSString* code = [[self parametersFromQueryString:[url query]] valueForKey:@"code"];
-            // if exists perform the exchange
-            if (code)
-                [self exchangeAuthorizationCodeForAccessToken:code success:success failure:failure];
-        
-            // finally, unregister
-            [self stopObserving];
-            // ..and update state
-            _state = AGAuthorizationStateApproved;
+            [self extractCode:notification success:success failure:failure];
     }];
     
     // register to receive notification when the application becomes active so we
@@ -262,6 +252,24 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
 }
 
 #pragma mark - Utility methods
+
+-(void)extractCode:(NSNotification*)notification success:(void (^)(id object))success
+           failure:(void (^)(NSError *error))failure {
+    NSURL *url = [[notification userInfo] valueForKey:UIApplicationLaunchOptionsURLKey];
+    
+    // extract the code from the URL
+    NSString* code = [[self parametersFromQueryString:[url query]] valueForKey:@"code"];
+    // if exists perform the exchange
+    if (code) {
+        [self exchangeAuthorizationCodeForAccessToken:code success:success failure:failure];
+        // update state
+        _state = AGAuthorizationStateApproved;
+    } else if(failure) {
+        failure([NSError errorWithDomain:AGAuthzErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey: @"User cancelled authorization."}]);
+    }
+    // finally, unregister
+    [self stopObserving];
+}
 
 - (NSString*) urlAsString {
     if(self.baseURL) {
