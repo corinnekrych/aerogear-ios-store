@@ -35,19 +35,15 @@
 @synthesize type = _type;
 
 - (NSString *)authzEndpoint {
-    NSString* correctlyFormattedAuthzEndpoint = _authzEndpoint;
-    if ([correctlyFormattedAuthzEndpoint hasPrefix:@"/"]) {
-        correctlyFormattedAuthzEndpoint = [correctlyFormattedAuthzEndpoint substringFromIndex:1];
-    }
-    return correctlyFormattedAuthzEndpoint;
+    return [self trimTrailingSlash:_authzEndpoint];
 }
 
 - (NSString *)accessTokenEndpoint {
-    NSString* correctlyFormattedAccessTokenEndpoint = _accessTokenEndpoint;
-    if ([correctlyFormattedAccessTokenEndpoint hasPrefix:@"/"]) {
-        correctlyFormattedAccessTokenEndpoint = [correctlyFormattedAccessTokenEndpoint substringFromIndex:1];
-    }
-    return correctlyFormattedAccessTokenEndpoint;
+    return [self trimTrailingSlash:_accessTokenEndpoint];
+}
+
+- (NSString *)revokeTokenEndpoint {
+    return [self trimTrailingSlash:_revokeTokenEndpoint];
 }
 
 - (instancetype)init {
@@ -66,5 +62,16 @@
     return self;
 }
 
+- (NSString *)trimTrailingSlash:(NSString *)endpoint {
+    if (!endpoint)
+        return nil;
+    
+    NSString* correctlyFormattedTokenEndpoint = endpoint;
+    if ([correctlyFormattedTokenEndpoint hasPrefix:@"/"]) {
+        correctlyFormattedTokenEndpoint = [correctlyFormattedTokenEndpoint substringFromIndex:1];
+    }
+    
+    return correctlyFormattedTokenEndpoint;
+}
 
 @end
