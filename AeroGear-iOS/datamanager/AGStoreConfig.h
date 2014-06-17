@@ -17,7 +17,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AGConfig.h"
-#import "AGEncryptionService.h"
+//#import "AGEncryptionService.h"
 
 /**
  * Represents the public API to configure AGStore objects.
@@ -32,6 +32,6 @@
 /**
  * The encryption service to use for encryption/decryption of data.
  */
-@property (strong, nonatomic) id<AGEncryptionService> encryptionService;
+//@property (strong, nonatomic) id<AGEncryptionService> encryptionService;
 
 @end

@@ -15,23 +15,23 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
+#ifndef _AEROGEAR_STORE_
+#define _AEROGEAR_STORE_
 
+#pragma mark - base
+#import "AGConfig.h"
+
+#pragma mark - DataManager
+#import "AGStore.h"
+#import "AGDataManager.h"
+#import "AGStoreConfig.h"
+
+#pragma mark - Encryption
 #import "AGCryptoConfig.h"
+#import "AGKeyStoreCryptoConfig.h"
+#import "AGPassphraseCryptoConfig.h"
+#import "AGKeyManager.h"
+#import "AGEncryptionService.h"
 
-/**
- * Configuration object for an AGPasswordKeyServices provider.
- */
-@interface AGKeyStoreCryptoConfig : NSObject <AGCryptoConfig>
+#endif /* _AEROGEAR_STORE_ */
 
-/**
- * Applies the alias to the configuration.
- */
-@property (nonatomic, copy) NSString *alias;
-
-/**
- * Applies the password to the configuration.
- */
-@property (nonatomic, copy) NSString *password;
-
-@end

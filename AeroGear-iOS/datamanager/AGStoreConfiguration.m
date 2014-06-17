@@ -22,7 +22,7 @@
 @synthesize recordId = _recordId;
 @synthesize name = _name;
 @synthesize type = _type;
-@synthesize encryptionService = _encryptionService;
+//@synthesize encryptionService = _encryptionService;
 
 - (instancetype)init {
     self = [super init];

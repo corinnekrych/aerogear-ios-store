@@ -2,9 +2,7 @@ xcodeproj 'AeroGear-iOS.xcodeproj'
 
 platform :ios, '7.0'
 
-pod 'AFNetworking', '2.2.1'
 pod 'FMDB', '2.1'
-pod 'AeroGear-Crypto', '0.2.3'
 
 target 'AeroGear-iOSTests', :exclusive => true do
     pod 'OCMock', '2.2.3'

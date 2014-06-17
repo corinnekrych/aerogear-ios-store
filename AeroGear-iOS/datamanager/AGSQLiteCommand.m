@@ -252,11 +252,12 @@
         [statement appendString:@"value "];
         
         // check if it should be a blob type
-        if ([_encoder isKindOfClass:[AGEncryptedPListEncoder class]]) {
-            [statement appendString:@"blob, "];
-        } else {
+        // TODO Modularization
+        //if ([_encoder isKindOfClass:[AGEncryptedPListEncoder class]]) {
+        //    [statement appendString:@"blob, "];
+        //} else {
             [statement appendString:@"text, "];
-        }
+        //}
         
         [statement deleteCharactersInRange:NSMakeRange([statement length]- 2, 2)];
         [statement appendString:@");"];
