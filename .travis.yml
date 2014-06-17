@@ -1,8 +1,8 @@
 language: objective-c
 
 before_install:
-    - gem install cocoapods -v 0.32.1 --no-rdoc --no-ri --no-document --quiet
-    - gem install xcpretty -v 0.1.4 --no-rdoc --no-ri --no-document --quiet
+    - gem install cocoapods -v 0.33.1 --no-rdoc --no-ri --no-document --quiet
+    - gem install xcpretty -v 0.1.6 --no-rdoc --no-ri --no-document --quiet
 
 script:
     - set -o pipefail && xcodebuild -workspace AeroGear-iOS.xcworkspace -scheme AeroGear-iOSTests -sdk iphonesimulator -configuration Release clean test | xcpretty -c
