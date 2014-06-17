@@ -26,12 +26,5 @@
 #import "AGDataManager.h"
 #import "AGStoreConfig.h"
 
-#pragma mark - Encryption
-#import "AGCryptoConfig.h"
-#import "AGKeyStoreCryptoConfig.h"
-#import "AGPassphraseCryptoConfig.h"
-#import "AGKeyManager.h"
-#import "AGEncryptionService.h"
-
 #endif /* _AEROGEAR_STORE_ */
 
