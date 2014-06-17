@@ -18,7 +18,7 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 #import "AGAuthenticationModuleAdapter.h"
-#import "AGOauth2AuthzModuleAdapter.h"
+#import "AGOAuth2AuthzModuleAdapter.h"
 
 @interface AGHttpClient : AFHTTPSessionManager
 
