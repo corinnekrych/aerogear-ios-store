@@ -1,4 +1,4 @@
-xcodeproj 'AeroGear-iOS.xcodeproj'
+xcodeproj 'AeroGear-Store.xcodeproj'
 
 platform :ios, '7.0'
 
